@@ -37,9 +37,11 @@ public class UserLoginApplication {
 					System.out.println();
 					System.out.println("Welcome: " + user.getName());
 					System.out.println();
+					System.exit(0);
 				} else {
 					System.out.println("Too many failed login attempts, you are now locked out.");
 					System.out.println();
+					System.exit(0);
 				}
 			} //End for loop		
 
