@@ -1,68 +1,93 @@
 package com.coderscampus.assignment3;
 
 import java.io.BufferedReader;
-import java.io.FileNotFoundException;
 import java.io.FileReader;
 import java.io.IOException;
 import java.util.Scanner;
 
 public class UserLoginApplication {
 
-	public static void main(String[] args) {
+	public static void main(String[] args) throws IOException {
 
-		BufferedReader fileReader = null;
-		UserService userService = new UserService();
-		User[] users = new User[4];
-		try {
+		int SIZE = 4;
+		int MAX_Attempts = 5;
+		int num = 1;
+		int i = 0;
+		boolean login = false;
+		// boolean matched = false;
+		String line = null;
+		String[] lineData = null;
+		User[] users = new User[SIZE];
+		String inpUser = null;
+		String inpPass = null;
+		User userlog = new User();
+		BufferedReader br = new BufferedReader(new FileReader("data.txt"));
+		Scanner scan = new Scanner(System.in);
+		// Read user from file
+		loadUsers(i, users, br);
 
-			fileReader = new BufferedReader(new FileReader("data.txt"));
-
-			String line;
-			int i = 0;
-			while ((line = fileReader.readLine()) != null) {
-
-				users[i] = userService.createUser(line);
-				i += 1;
+		// Scan infos from keyboard
+		inpUser = inputUsername(scan);
+		System.out.println();
+		inpPass = inputPassword(scan);
+		while (num < MAX_Attempts) {
+			for (User user : users) {
+				userlog = user;
+				if (userlog.getUserName().equalsIgnoreCase(inpUser) && userlog.getPassword().equals(inpPass)) {
+					login = true;
+					break;
+				} else {
+					continue;
+				}
 			}
 
-			int j = 0;
-			for (User user : users) {
-
+			if (login == true) {
 				System.out.println();
-				// System.out.println("User#" + (j += 1) + ": " + user.getName());
-				// System.out.println("*".repeat(17));
-				boolean valid = userService.validateUser(user);
+				System.out.println("Welcome: " + userlog.getName());
+				break;
+			} else {
+				System.out.println();
+				System.out.println("Invalid login, please try again");
+				System.out.println();
+				inpUser = inputUsername(scan);
+				System.out.println();
+				inpPass = inputPassword(scan);
+				num++;
 
-				if (valid) {
-
+				if (num >= MAX_Attempts) {
 					System.out.println();
-					System.out.println("Welcome: " + user.getName());
-					System.out.println();
-					System.exit(0);
-				} else {
-					System.out.println("Too many failed login attempts, you are now locked out.");
-					System.out.println();
-					System.exit(0);
+					System.out.println("Too many failed login attempts, you are now locked out. ");
 				}
-			} // End for loop
-
-		} catch (FileNotFoundException e) {
-			System.out.println("The file wasn't found ");
-			e.printStackTrace();
-		} catch (IOException e) {
-			System.out.println("There is an I/O Exception");
-			e.printStackTrace();
-		} finally {
-			try {
-				// System.out.println("Closing file reader");
-				fileReader.close();
-			} catch (IOException e) {
-				System.out.println("The file is not closing");
-				e.printStackTrace();
 			}
 
 		}
 
+	} // end main
+
+	public static void loadUsers(int i, User[] users, BufferedReader br) throws IOException {
+		String line;
+		String[] lineData;
+		while ((line = br.readLine()) != null) {
+			lineData = line.split(",");
+			User user = new User(lineData[0], lineData[1], lineData[2]);
+			users[i] = user;
+			i++;
+		}
 	}
 
-}
+	public static String inputPassword(Scanner scan) {
+		String inpPass;
+		System.out.println("Enter your password: ");
+		System.out.println();
+		inpPass = scan.nextLine();
+		return inpPass;
+	}
+
+	public static String inputUsername(Scanner scan) {
+		String inpUser;
+		System.out.println("Enter your email: ");
+		System.out.println();
+		inpUser = scan.nextLine();
+		return inpUser;
+	}
+} // end class
