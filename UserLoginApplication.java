@@ -26,7 +26,7 @@ public class UserLoginApplication {
 		// Read user from file
 		loadUsers(i, users, br);
 
-		// Scan infos from keyboard
+		// input user's information from the keyboard
 		inpUser = inputUsername(scan);
 		System.out.println();
 		inpPass = inputPassword(scan);
