@@ -1,4 +1,4 @@
-package com.coderscampus.userloginapp;
+package com.coderscampus.assignment3;
 
 public class User {
 
@@ -10,12 +10,11 @@ public class User {
 		// System.out.println("User is created");
 	}
 
-//	public User(String userName, String password, String name) {
-//		super();
-//		this.userName = userName;
-//		this.password = password;
-//		this.name = name;
-//	}
+	public User(String userName, String password, String name) {
+		this.userName = userName;
+		this.password = password;
+		this.name = name;
+	}
 
 	public String getUserName() {
 		return userName;
