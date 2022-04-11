@@ -15,8 +15,8 @@ public class UserLoginApplication {
 		int i = 0;
 		boolean login = false;
 		// boolean matched = false;
-		String line = null;
-		String[] lineData = null;
+		//String line = null;
+		//String[] lineData = null;
 		User[] users = new User[SIZE];
 		String inpUser = null;
 		String inpPass = null;
