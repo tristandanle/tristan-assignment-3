@@ -54,7 +54,7 @@ public class UserLoginApplication {
 				inpPass = inputPassword(scan);
 				num++;
 
-				if (num >= MAX_Attempts) {
+				if (num >= MAX_Attempts - 1) {
 					System.out.println();
 					System.out.println("Too many failed login attempts, you are now locked out. ");
 				}
