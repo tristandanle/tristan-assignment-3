@@ -9,7 +9,7 @@ public class UserLoginApplication {
 
 	public static void main(String[] args) throws IOException {
 
-		final int SIZE = 4; // there is four lines in a file
+		final int SIZE = 4;
 		final int MAX_Attempts = 5;
 		int num = 1;
 		int i = 0;
@@ -26,7 +26,7 @@ public class UserLoginApplication {
 		// Read user from file
 		loadUsers(i, users, br);
 
-		// input user's information from the keyboard
+		// Scan infos from keyboard
 		inpUser = inputUsername(scan);
 		System.out.println();
 		inpPass = inputPassword(scan);
@@ -40,12 +40,12 @@ public class UserLoginApplication {
 					continue;
 				}
 			}
-                        // If user is logged successfully, print out the welcome and name
+
 			if (login == true) {
 				System.out.println();
 				System.out.println("Welcome: " + userlog.getName());
 				break;
-			} else { // Display invalid message et re-input username and password 
+			} else {
 				System.out.println();
 				System.out.println("Invalid login, please try again");
 				System.out.println();
@@ -53,7 +53,7 @@ public class UserLoginApplication {
 				System.out.println();
 				inpPass = inputPassword(scan);
 				num++;
-                                // Lock out user if the maximum (5) of login is reached
+
 				if (num >= MAX_Attempts) {
 					System.out.println();
 					System.out.println("Too many failed login attempts, you are now locked out. ");
@@ -64,10 +64,9 @@ public class UserLoginApplication {
 
 	} // end main
 
-	// Method of reading user's data file that is placed into the users's array
 	public static void loadUsers(int i, User[] users, BufferedReader br) throws IOException {
-		String line;
-		String[] lineData;
+		String line=null;
+		String[] lineData= null;
 		while ((line = br.readLine()) != null) {
 			lineData = line.split(",");
 			User user = new User(lineData[0], lineData[1], lineData[2]);
@@ -75,7 +74,7 @@ public class UserLoginApplication {
 			i++;
 		}
 	}
-        // Method of inputting the user's password
+
 	public static String inputPassword(Scanner scan) {
 		String inpPass;
 		System.out.println("Enter your password: ");
@@ -83,7 +82,7 @@ public class UserLoginApplication {
 		inpPass = scan.nextLine();
 		return inpPass;
 	}
-        // Method of inputting the user's username
+
 	public static String inputUsername(Scanner scan) {
 		String inpUser;
 		System.out.println("Enter your email: ");
