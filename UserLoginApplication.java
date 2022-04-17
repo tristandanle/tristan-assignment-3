@@ -57,6 +57,7 @@ public class UserLoginApplication {
 				if (num >= MAX_Attempts - 1) {
 					System.out.println();
 					System.out.println("Too many failed login attempts, you are now locked out. ");
+				        System.exit(0);
 				}
 			}
 
