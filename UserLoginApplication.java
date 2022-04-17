@@ -10,7 +10,7 @@ public class UserLoginApplication {
 	public static void main(String[] args) throws IOException {
 
 		final int SIZE = 4;
-		final int MAX_Attempts = 5;
+		final int MAX_Attempts = 6;
 		int num = 1;
 		int i = 0;
 		boolean login = false;
